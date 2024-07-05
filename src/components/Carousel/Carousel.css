@@ -1,0 +1,27 @@
+.slick-list{
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+}
+
+.slick-arrow {
+    z-index: 1;
+    border: 2px solid #47494B;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    display: none;
+}
+
+.slick-next {
+    right: -65px !important;
+}
+.slick-prev {
+    left: -80px !important;
+}
