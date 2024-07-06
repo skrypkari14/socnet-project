@@ -36,3 +36,13 @@
 *{
     font-family: 'Gilroy', sans-serif;
 }
+
+.scrollbar::-webkit-scrollbar{
+    width: 2px;
+    background: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb{
+    background: rgba(37, 39, 41, 0.15);
+    border-radius: 10px;
+}

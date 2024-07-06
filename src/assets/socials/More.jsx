@@ -1,8 +1,8 @@
 import React from 'react';
 
-const More = () => {
+const More = ({className}) => {
     return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='fill-main dark:fill-second'>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`fill-main dark:fill-second ${className}`}>
             <g clipPath="url(#clip0_44_8473)">
                 <path
                     d="M2 14C3.10457 14 4 13.1046 4 12C4 10.8954 3.10457 10 2 10C0.89543 10 0 10.8954 0 12C0 13.1046 0.89543 14 2 14Z"

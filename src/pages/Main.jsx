@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from "../components/Header/Header";
 import ArrowDown from "../assets/icons/ArrowDown";
 import White from "../assets/icons/White";
@@ -7,7 +7,8 @@ import ru from '../assets/RU.png'
 import FacebookBig from '../assets/socials/FacebookBig';
 import Box from "../assets/icons/Box";
 import Support from "../assets/Support";
-import QRCODE from '../assets/QRCODE.png'
+import QRCODE_dark from '../assets/QRCODE_dark.png'
+import QRCODE_light from '../assets/QRCODE_light.png'
 import Select from "../components/Select";
 import LongCard from "../components/LongCard";
 import Button from "../components/Button";
@@ -36,21 +37,12 @@ import Facebook from "../assets/socials/Facebook";
 import {Link} from "react-router-dom";
 import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
+import {ThemeContext} from "../context/ThemeProvider";
+import Catalog from "../components/Catalog";
 
 
 const Main = () => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    useEffect(() => {
-        const theme = localStorage.getItem('theme') || 'light';
-        setIsDarkMode(theme === 'dark');
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-    }, []);
-    const toggleTheme = () => {
-        const newTheme = isDarkMode ? 'light' : 'dark';
-        setIsDarkMode(!isDarkMode);
-        document.documentElement.classList.toggle('dark', !isDarkMode);
-        localStorage.setItem('theme', newTheme);
-    };
+    const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
     const socials = [
         { name: 'Avito', component: Avito },
@@ -79,12 +71,9 @@ const Main = () => {
         <div className='bg-second dark:bg-main min-h-screen w-full'>
             <Header/>
             <main className='px-[88px]'>
-                <section className='flex items-center justify-between'>
-                    <div className='flex items-center gap-4'>
-                        <Button className='bg-main w-[172px] h-[56px] dark:text-main text-second dark:bg-second'>
-                            <p>Каталог</p>
-                            <ArrowDown className={'dark:fill-main fill-second'}/>
-                        </Button>
+                <section className='flex max-h-14 items-start justify-between'>
+                    <div className='flex items-start gap-4'>
+                        <Catalog/>
                         <Button onClick={toggleTheme}
                                 className='bg-main w-[56px] h-[56px] dark:text-main text-second dark:bg-second'>
                             {!isDarkMode ? <White/> : <Dark/>}
@@ -130,16 +119,16 @@ const Main = () => {
                             <p className='dark:text-second/30 text-black/30 pt-2'>Также актуальные новости о нашем
                                 проекте прямо из Telegram! Подписывайтесь!</p>
                         </div>
-                        <img src={QRCODE} alt={'QRCODE'}/>
+                        <img src={isDarkMode ? QRCODE_dark : QRCODE_light} alt={'QRCODE'}/>
                     </div>
                     <div
                         className='h-48 dark:bg-third bg-fourth col-span-2 rounded-[32px] flex items-center justify-center'>
                         <h4 className='text-6xl font-bold dark:text-second text-main italic'>РЕКЛАМНЫЙ БЛОК</h4>
                     </div>
                 </section>
-                <section className='pb-16 border-b border-main/[0.08] dark:border-second/[0.08]'>
+                <section className='pb-16 relative z-50'>
                     <h4 className='text-main dark:text-second font-bold text-[40px]'>Каталог товаров</h4>
-                    <div className='flex items-center justify-between pt-24'>
+                    <div className='flex items-start  max-h-14 justify-between pt-24'>
                         <div className='flex items-center gap-4'>
                             <Button className='bg-main py-3 px-6 text-second dark:bg-second/[0.04]'>
                                 <p>Фильтры</p>
@@ -152,13 +141,14 @@ const Main = () => {
                                 <p>Найти</p>
                             </Button>
                         </div>
-                        <div className='relative'>
+                        <div className='relative z-[1000]'>
                             <p className='absolute left-0 -top-[16px] -translate-y-1/2 font-normal text-main dark:text-second text-xl'>Сортировка
                                 по</p>
                             <Select/>
                         </div>
                     </div>
                 </section>
+                <div className='w-full h-[1px] relative z-0 bg-main/[0.08] dark:bg-second/[0.08]'></div>
                 <section className='pt-[100px]'>
                     <div className='pr-52 relative w-full'>
                         <h4 className='text-main dark:text-second text-[40px] font-bold'>Facebook - Аккаунты</h4>

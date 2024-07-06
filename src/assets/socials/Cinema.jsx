@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Cinema = () => {
+const Cinema = ({className}) => {
     return (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='fill-main dark:fill-second'>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`fill-main dark:fill-second ${className}`}>
             <g clip-path="url(#clip0_44_8490)">
                 <path
                     d="M13.125 10.4531C12.8659 10.9225 12.4858 11.3137 12.0241 11.5862C11.5624 11.8587 11.0361 12.0023 10.5 12.0023H15.75C15.2139 12.0023 14.6876 11.8587 14.2259 11.5862C13.7642 11.3137 13.3841 10.9225 13.125 10.4531Z"

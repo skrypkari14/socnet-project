@@ -1,18 +1,18 @@
 import React from 'react';
 
-const Email = () => {
+const Email = ({fill, stroke}) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M18.68 1.5H5.32C3.21027 1.5 1.5 3.21027 1.5 5.32V18.68C1.5 20.7897 3.21027 22.5 5.32 22.5H18.68C20.7897 22.5 22.5 20.7897 22.5 18.68V5.32C22.5 3.21027 20.7897 1.5 18.68 1.5Z"
-                className='fill-main dark:fill-second'
+                className={`fill-main dark:fill-second ${fill}`}
             />
             <path
                 d="M12.0006 14.8606C13.5802 14.8606 14.8606 13.5802 14.8606 12.0006C14.8606 10.4211 13.5802 9.14062 12.0006 9.14062C10.4211 9.14062 9.14062 10.4211 9.14062 12.0006C9.14062 13.5802 10.4211 14.8606 12.0006 14.8606Z"
-                className='dark:stroke-main stroke-white' strokeWidth="1.5" strokeMiterlimit="10"/>
+                className={`dark:stroke-main stroke-white ${stroke}`} strokeWidth="1.5" strokeMiterlimit="10"/>
             <path
                 d="M14.8612 8.17989V14.1799C14.8612 14.6228 15.0371 15.0476 15.3503 15.3608C15.6635 15.6739 16.0883 15.8499 16.5312 15.8499C16.8373 15.8529 17.1381 15.7703 17.3997 15.6112C17.6613 15.4522 17.8731 15.2231 18.0112 14.9499C18.5664 13.8115 18.785 12.5383 18.6412 11.2799C18.4822 9.89294 17.8934 8.59046 16.9572 7.55493C16.0209 6.51939 14.7842 5.80268 13.4202 5.50521C12.0563 5.20774 10.6334 5.34441 9.35102 5.89607C8.06863 6.44773 6.99093 7.38675 6.26892 8.58156C5.54691 9.77638 5.21676 11.1671 5.32473 12.559C5.4327 13.9508 5.97337 15.274 6.871 16.3432C7.76863 17.4124 8.97825 18.1739 10.3304 18.5212C11.6825 18.8685 13.1094 18.7841 14.4112 18.2799"
-                className='dark:stroke-main stroke-white' strokeWidth="1.5" strokeMiterlimit="10"/>
+                className={`dark:stroke-main stroke-white ${stroke}`} strokeWidth="1.5" strokeMiterlimit="10"/>
         </svg>
 
     );

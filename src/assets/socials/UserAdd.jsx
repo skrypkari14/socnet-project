@@ -1,8 +1,8 @@
 import React from 'react';
 
-const UserAdd = () => {
+const UserAdd = ({className}) => {
     return (
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className='fill-main dark:fill-second'>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={`fill-main dark:fill-second ${className}`}>
             <g clipPath="url(#clip0_44_8489)">
                 <path
                     d="M7.5 10C10.2614 10 12.5 7.76142 12.5 5C12.5 2.23858 10.2614 0 7.5 0C4.73858 0 2.5 2.23858 2.5 5C2.5 7.76142 4.73858 10 7.5 10Z"
