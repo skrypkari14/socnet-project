@@ -60,13 +60,13 @@ const Catalog = () => {
     return (
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`relative z-[100] flex overflow-hidden flex-col items-start rounded-[20px] font-bold py-4 text-xl bg-main dark:text-main px-6 text-second dark:bg-second transition-all  ${isOpen ? 'max-w-[320px] max-h-[1000px]' : 'max-w-[175px] max-h-14'}`}
+                className={`relative z-[100] flex overflow-hidden flex-col items-start rounded-[20px] font-bold py-4 text-xl bg-main dark:text-main px-6 text-second dark:bg-second transition-all duration-500  ${isOpen ? 'max-w-[320px] max-h-[1000px]' : 'max-w-[175px] max-h-14'}`}
             >
-                <div className={`flex items-center gap-2 ${isOpen ? 'pr-[137px]' : ''}`}>
+                <div className={`flex items-center gap-2 transition-all ${isOpen ? 'pr-[137px]' : ''}`}>
                     <p>Каталог</p>
                     <ArrowDown className={`dark:fill-main fill-second transition-all ${isOpen ? 'rotate-180' : ''}`}/>
                 </div>
-                <div className='mt-6 pr-2 max-w-[320px] scrollbar overflow-y-scroll overflow-x-hidden w-full'>
+                <div className='mt-6 pr-2 w-full transition-all scrollbar overflow-y-scroll overflow-x-hidden'>
                     {Object.keys(groupedItems).map(letter => (
                         <div key={letter} className='py-4 border-t border-second/15 dark:border-main/15 w-full'>
                             <p className='text-left dark:text-main text-second'>{letter}</p>

@@ -60,7 +60,7 @@ const Select = () => {
     return (
         <button
             onClick={() => setOpen(!open)}
-            className={`relative z-[100] flex overflow-hidden flex-col bg-[#f0f2f6] rounded-[20px] text-2xl dark:bg-[#2d2f32] w-[396px] px-6 py-3 transition-all  ${open ? 'max-h-[1000px]' : 'max-h-14'}`}
+            className={`relative z-[100] flex overflow-hidden flex-col bg-[#f0f2f6] rounded-[20px] text-2xl dark:bg-[#2d2f32] w-[396px] px-6 py-3 transition-all duration-500  ${open ? 'max-h-[1000px]' : 'max-h-14'}`}
         >
             <div className='flex justify-between w-full items-center'>
                 {selectedItem ? <p className='text-main dark:text-second'>{selectedItem.title}</p> :
