@@ -8,7 +8,7 @@ import ArrowDown from "../../assets/icons/ArrowDown";
 
 const Header = () => {
     return (
-        <header className='px-[88px] flex items-center pt-[60px] pb-[100px] gap-6'>
+        <header className='px-[88px] flex items-start max-h-[56px] pt-[60px] pb-[100px] gap-6'>
             <Logo/>
             <Searchbar/>
             <div className='flex items-center gap-4'>

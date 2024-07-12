@@ -28,6 +28,10 @@ module.exports = {
         gray: '#7F8183',
         ocean: '#3ABCFF'
       },
+      transitionProperty: {
+        'max-height-background': 'max-height, background',
+        'catalog': 'height, margin, padding, max-height, max-width, filter, width'
+      }
     },
   },
   plugins: [],

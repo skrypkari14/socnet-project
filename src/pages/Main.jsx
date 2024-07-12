@@ -1,9 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Header from "../components/Header/Header";
 import ArrowDown from "../assets/icons/ArrowDown";
 import White from "../assets/icons/White";
 import Dark from "../assets/icons/Dark";
-import ru from '../assets/RU.png'
+import ru from '../assets/lang/RU.png'
+import en from '../assets/lang/EN.png'
+import cn from '../assets/lang/CN.png'
 import FacebookBig from '../assets/socials/FacebookBig';
 import Box from "../assets/icons/Box";
 import Support from "../assets/Support";
@@ -38,11 +40,18 @@ import {Link} from "react-router-dom";
 import Carousel from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
 import {ThemeContext} from "../context/ThemeProvider";
-import Catalog from "../components/Catalog";
+import Dropdown from "../components/Dropdown/DropdownCatalog";
+import Cross from "../assets/icons/Cross";
+import FilterModal from "../components/Modals/FilterModal";
+
 
 
 const Main = () => {
     const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+    const [selectedLang, setSelectedLang] = useState(ru);
+    const [isOpenLang, setOpenLang] = useState(false);
+    const [isOpenHelp, setOpenHelp] = useState(false);
+    const [isOpenFilter, setOpenFilter] = useState(false);
 
     const socials = [
         { name: 'Avito', component: Avito },
@@ -69,34 +78,84 @@ const Main = () => {
 
     return (
         <div className='bg-second dark:bg-main min-h-screen w-full'>
+            {isOpenFilter && <FilterModal setOpenFilter={setOpenFilter}/>}
             <Header/>
-            <main className='px-[88px]'>
-                <section className='flex max-h-14 items-start justify-between'>
+            <main className='px-10 xl:px-[88px]'>
+                <section className='flex max-h-14 overflow-x-clip items-start justify-between'>
                     <div className='flex items-start gap-4'>
-                        <Catalog/>
+                        <Dropdown/>
                         <Button onClick={toggleTheme}
                                 className='bg-main w-[56px] h-[56px] dark:text-main text-second dark:bg-second'>
                             {!isDarkMode ? <White/> : <Dark/>}
                         </Button>
-                        <Button className='bg-main w-[88px] h-[56px] dark:text-main text-second dark:bg-second'>
-                            <img src={ru} alt='ru'/>
-                            <ArrowDown className={'dark:fill-main fill-second'}/>
-                        </Button>
+                        <div className={`relative z-[100] overflow-hidden rounded-[20px] bg-main transition-catalog duration-500 dark:text-main text-second dark:bg-second ${isOpenLang ? 'w-[175px] max-h-[200px] drop-shadow' : 'w-[88px] max-h-[56px]'}`}>
+                            <button onClick={() => setOpenLang(!isOpenLang)} className='outline-none w-full pl-4 flex items-center gap-2 h-[56px] '>
+                                <img src={selectedLang}  className={'w-6 h-6'} alt='ru'/>
+                                <ArrowDown className={`dark:fill-main fill-second transition-[rotate] ${isOpenLang ? 'rotate-180' : ''}`}/>
+                            </button>
+                            <div className='py-2'>
+                                <div
+                                    onClick={() => {
+                                        setSelectedLang(ru);
+                                        setOpenLang(false);
+                                    }}
+                                    className={`flex justify-center cursor-pointer ${selectedLang === ru ? 'dark:bg-main bg-second' : ''}`}>
+                                    <div className='max-w-[109px] w-full flex items-center justify-between'>
+                                        <p className={`text-xl ${selectedLang === ru ? 'text-main dark:text-second font-semibold' : 'font-medium text-second dark:text-main'}`}>Русский</p>
+                                        <img src={ru} className={'w-6 h-6'} alt={'ru'}/>
+                                    </div>
+                                </div>
+                                <div
+                                    onClick={() => {
+                                        setSelectedLang(en);
+                                        setOpenLang(false);
+                                    }}
+                                    className={`flex justify-center cursor-pointer ${selectedLang === en ? 'dark:bg-main bg-second' : ''}`}>
+                                    <div className='max-w-[109px] w-full flex items-center justify-between'>
+                                        <p className={`text-xl ${selectedLang === en ? 'text-main dark:text-second font-semibold' : 'font-medium text-second dark:text-main'}`}>English</p>
+                                        <img src={en} className={'w-6 h-6'} alt={'ru'}/>
+                                    </div>
+                                </div>
+                                <div
+                                    onClick={() => {
+                                        setSelectedLang(cn);
+                                        setOpenLang(false);
+                                    }}
+                                    className={`flex justify-center cursor-pointer ${selectedLang === cn ? 'dark:bg-main bg-second' : ''}`}>
+                                    <div className='max-w-[109px] w-full flex items-center justify-between'>
+                                        <p className={`text-xl ${selectedLang === cn ? 'text-main dark:text-second font-semibold' : 'font-medium text-second dark:text-main'}`}>中國人</p>
+                                        <img src={cn} className={'w-6 h-6'} alt={'ru'}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div className='flex items-center justify-between gap-6'>
-                        <a className='flex items-center justify-center w-[120px] h-[56px] rounded-[20px] border-2 dark:border-[#36383A] border-[#D7DADE] underline dark:text-second text-main font-bold gap-2 text-xl'>
+                    <div className='flex items-start justify-between gap-6'>
+                        <a className='cursor-pointer hover:bg-main/10 dark:hover:bg-second/10 transition-[background] duration-500 flex items-center justify-center w-[120px] h-[56px] rounded-[20px] border-2 dark:border-second/10 border-main/10 underline dark:text-second text-main font-bold gap-2 text-xl'>
                             Новости
                         </a>
-                        <a className='flex items-center justify-center w-[120px] h-[56px] rounded-[20px] border-2 dark:border-[#36383A] border-[#D7DADE] dark:text-second text-main font-bold gap-2 text-xl'>
+                        <a className='cursor-pointer hover:bg-main/10 dark:hover:bg-second/10 transition-[background] duration-500 flex items-center justify-center w-[120px] h-[56px] rounded-[20px] border-2 dark:border-second/10 border-main/10 dark:text-second text-main font-bold gap-2 text-xl'>
                             Правила
                         </a>
-                        <a className='flex items-center justify-center w-[150px] h-[56px] rounded-[20px] border-2 dark:border-[#36383A] border-[#D7DADE] underline dark:text-second text-main font-bold gap-2 text-xl'>
-                            <p>Помощь</p>
-                            <ArrowDown className={'dark:fill-second fill-main'}/>
-                        </a>
+                        <div className={`relative z-[100] transition-max-height-background overflow-hidden duration-500 w-[172px] rounded-[20px] border-2 dark:border-second/10 border-main/10 ${isOpenHelp ? 'max-h-[200px]' : 'max-h-[56px] hover:bg-main/10 dark:hover:bg-second/10'}`}>
+                            <div onClick={() => setOpenHelp(!isOpenHelp)} className='cursor-pointer flex items-center gap-2 justify-center h-[56px]'>
+                                <p className={'font-bold text-xl text-main dark:text-second'}>Помощь</p>
+                                <ArrowDown className={`dark:fill-second fill-main transition-[rotate] ${isOpenHelp ? 'rotate-180' : ''}`}/>
+                            </div>
+                            <div className='px-4 py-2 dark:bg-main bg-second'>
+                                <div className={'cursor-pointer py-4 border-y dark:border-second/10 border-main/10 text-main/10 dark:text-second/10 hover:text-main/30 dark:hover:text-second/30 transition-all text-center font-medium text-xl'}>
+                                    <p>База знаний</p>
+                                </div>
+                                <div
+                                    className='cursor-pointer py-4 text-main/10 dark:text-second/10 hover:text-main/30 dark:hover:text-second/30 transition-all text-center font-medium text-xl'>
+                                    <p>Инструкции</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <a className='flex items-center justify-center w-[260px] h-[56px] rounded-[20px] dark:text-main text-second dark:bg-second bg-main font-bold gap-4 text-xl'>
+                    <a className='cursor-pointer flex items-center justify-center w-[260px] h-[56px] rounded-[20px] dark:text-main text-second dark:bg-second bg-main font-bold gap-4 text-xl'>
                             <p>Для продавцов</p>
                             <Box className={'dark:fill-main fill-second'}/>
                         </a>
@@ -130,7 +189,7 @@ const Main = () => {
                     <h4 className='text-main dark:text-second font-bold text-[40px]'>Каталог товаров</h4>
                     <div className='flex items-start  max-h-14 justify-between pt-24'>
                         <div className='flex items-center gap-4'>
-                            <Button className='bg-main py-3 px-6 text-second dark:bg-second/[0.04]'>
+                            <Button onClick={() => setOpenFilter(true)} className='bg-main py-3 px-6 text-second dark:bg-second/[0.04]'>
                                 <p>Фильтры</p>
                                 <ArrowDown className={'fill-second'}/>
                             </Button>
